@@ -332,6 +332,10 @@ public class TeleOpDynamicTest extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.addData("Left Trigger:" , gamepad1.left_trigger);
             telemetry.addData("Right Trigger", gamepad1.right_trigger);
+            telemetry.addData("Left Stick Y", gamepad1.left_stick_y);
+            telemetry.addData("Left Stick X", gamepad1.left_stick_x);
+            telemetry.addData("Right Stick Y", gamepad1.right_stick_y);
+            telemetry.addData("Right Stick X", gamepad1.right_stick_x);
             telemetry.addData("Additional Yaw: ", additionalYaw);
             telemetry.addData("Average Motor Power: ", avgMotorPower);
             telemetry.addData("Axial: ", axial);
