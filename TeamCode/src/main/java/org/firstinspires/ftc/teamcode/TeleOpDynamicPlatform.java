@@ -95,6 +95,39 @@ public class TeleOpDynamicPlatform extends LinearOpMode {
 
             telemetry.addData("vector to degree test: ",robot.vectorToDegrees(axial,lateral));
             // i believe this is calculating angle of the robot relative to starting point
+
+            if (max > 1) {
+                leftFrontPower  /= max;
+                rightFrontPower /= max;
+                leftBackPower   /= max;
+                rightBackPower  /= max;
+            }
+
+            leftBackPower += additionalYaw*avgMotorPower;
+            leftFrontPower += additionalYaw*avgMotorPower;
+            rightBackPower -= additionalYaw*avgMotorPower;
+            rightFrontPower -= additionalYaw*avgMotorPower;
+
+            robot.leftFront.setPower(leftFrontPower*superSpeed);
+            robot.rightFront.setPower(rightFrontPower*superSpeed);
+            robot.leftBack.setPower(leftBackPower*superSpeed);
+            robot.rightBack.setPower(rightBackPower*superSpeed);
+
+            telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
+            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+            telemetry.addData("Left Trigger:" , gamepad1.left_trigger);
+            telemetry.addData("Right Trigger", gamepad1.right_trigger);
+            telemetry.addData("Left Stick Y", gamepad1.left_stick_y);
+            telemetry.addData("Left Stick X", gamepad1.left_stick_x);
+            telemetry.addData("Right Stick Y", gamepad1.right_stick_y);
+            telemetry.addData("Right Stick X", gamepad1.right_stick_x);
+            telemetry.addData("Additional Yaw: ", additionalYaw);
+            telemetry.addData("Average Motor Power: ", avgMotorPower);
+            telemetry.addData("Axial: ", axial);
+            telemetry.addData("Lateral: ", lateral);
+            telemetry.addData("Yaw: ",yaw);
+            telemetry.update();
         }
     }
 }
